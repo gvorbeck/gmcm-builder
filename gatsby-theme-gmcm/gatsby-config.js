@@ -1,4 +1,4 @@
-module.exports = ({ contentPath = 'content', basePath = '/' }) => ({
+module.exports = ({ contentPath = 'src/content', basePath = '/' }) => ({
   plugins: [
     'gatsby-plugin-mdx',
     {
