@@ -8,9 +8,10 @@ const AdventureList = ({ adventures }) => (
       {adventures && adventures.map(adventure => (
         <li key={adventure.id}>
           <strong>
-            <Link to={adventure.slug}>{adventure.frontmatter.title}</Link> 
+            <Link to={`/${adventure.slug}`}>{adventure.frontmatter.title}</Link> 
           </strong>
-          <span>{adventure.id}</span>
+          <p>{adventure.id}</p>
+          <p>{adventure.slug}</p>
         </li>
       ))}
     </ul>
