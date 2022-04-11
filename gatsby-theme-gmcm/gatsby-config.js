@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 module.exports = ({ contentPath = 'src/content', basePath = '/' }) => ({
   plugins: [
     'gatsby-plugin-mdx',
@@ -6,7 +7,7 @@ module.exports = ({ contentPath = 'src/content', basePath = '/' }) => ({
       options: {
         name: 'content',
         path: contentPath,
-      }
+      },
     },
-  ]
+  ],
 });

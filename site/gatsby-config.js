@@ -3,6 +3,6 @@ module.exports = {
     {
       resolve: 'gatsby-theme-gmcm',
       options: {},
-    }
-  ]
-}
+    },
+  ],
+};

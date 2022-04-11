@@ -15,10 +15,12 @@ export const query = graphql`
   }
 `;
 
-const AdventurePageLayout = ({ data: { mdx } }) => (
-  <Layout>
-    <AdventureTease title={mdx.frontmatter.title} slug={mdx.slug} id={mdx.id} />
-  </Layout>
-);
+function AdventurePageLayout({ data: { mdx } }) {
+  return (
+    <Layout>
+      <AdventureTease title={mdx.frontmatter.title} slug={mdx.slug} id={mdx.id} />
+    </Layout>
+  );
+}
 
 export default AdventurePageLayout;

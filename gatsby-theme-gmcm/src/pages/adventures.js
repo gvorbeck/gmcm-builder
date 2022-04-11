@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import Layout from '../components/layout';
 import AdventureList from '../components/adventure-list';
 
-const AdventuresListingPage = () => {
+function AdventuresListingPage() {
   const data = useStaticQuery(graphql`
     query {
       allMdx(filter: {slug: {regex: "/adventures\\/\\w+\\/$/i"}}) {
@@ -23,6 +23,6 @@ const AdventuresListingPage = () => {
       <AdventureList adventures={adventures} />
     </Layout>
   );
-};
+}
 
 export default AdventuresListingPage;
