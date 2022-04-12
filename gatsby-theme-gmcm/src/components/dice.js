@@ -51,6 +51,12 @@ function Dice({
           edge="end"
           aria-label="Roll Dice"
           onClick={handleClick}
+          sx={{
+            mr: '-5px',
+            mt: '-8px',
+            position: 'relative',
+            top: '2px',
+          }}
         >
           <CasinoIcon />
         </IconButton>
