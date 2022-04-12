@@ -22,17 +22,18 @@ areas:
       This is **flavor text** written in _markdown_. It's for designating what text to read aloud to your players, for example "Dust and spiders lurk here, where adventurers are seldom seen."
     content: |
       #### Occupants
-      * 2 <MonsterLink monster="goblin">Goblins</MonsterLink>
+      * 2 <MonsterLink m="example monster">Example Monsters</MonsterLink> - This is a custom link that sends you directly to the Bestiary highlighting the monster in question. Just type `<MonsterLink m="example monster">Example Monster</MonsterLink>`. The same works for spells: `<SpellLink s="gotcha spell">Gotcha Spell</SpellLink>`.
 
       #### Environment
       * The main gates, made of bronze-covered wood, have corroded and collapsed.
       * Any dice formulas in text can be turned into buttons to roll from!
-          * example: <>d20</>, <>5d6</>, it's so easy - <>3d12+3</>! Just wrap them in Dice tags (ex: `<>2d6</>`).
+          * example: Typing `<Dice r="2d6" />` in your front matter will result in <Dice r="2d6" />. Heres some more: <Dice r="d20" />, <Dice r="4d8+5" />
       #### Developments
       * Hover your mouse over the PLAYER STATS bar at the bottom of your screen. Your players' info will be displayed. Right now it's just their Passive Perception, but I'll put more here soon.
       * Any loud noises here attract attention from Goblins in **area 7**.
       #### Treasure
       * A single **MacGuffin** is located in the southeast corner.
+      * 1 scroll of <SpellLink s="gotcha spell">Gotcha Spell</SpellLink>
       #### XP
       * The party splits 5,000 xp for being great. And defeating the goblins.
   - name: Moonbeam Observatory
