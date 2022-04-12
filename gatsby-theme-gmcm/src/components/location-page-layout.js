@@ -32,7 +32,7 @@ import {
   Map,
 } from '@mui/icons-material/';
 import Layout from './layout';
-import { MonsterLink } from './custom-link';
+import { MonsterLink, SpellLink } from './custom-link';
 import Dice from './dice';
 import {
   MAP, GENERAL, UP, DOWN,
@@ -50,7 +50,7 @@ import {
   Unknown,
 } from '../images/icons';
 
-const markdownComponentsList = { Link, MonsterLink, Dice };
+const markdownComponentsList = { Link, MonsterLink, SpellLink, Dice };
 
 function LocationPageLayout({ data, location }) {
   const [scrollLocation, setScrollLocation] = useState(0);
