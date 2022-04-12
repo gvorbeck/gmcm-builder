@@ -1,10 +1,14 @@
 /* eslint-disable react/jsx-indent */
 import React from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
-import { Box, Divider, Paper, Typography } from '@mui/material';
+import {
+  Box, Divider, Paper, Typography,
+} from '@mui/material';
 import Layout from '../components/layout';
 
-const Image = () => <StaticImage src="../images/404.png" alt="Sword" />
+function Image() {
+  return <StaticImage src="../images/404.png" alt="Sword" />;
+}
 
 function FourOhFourPage() {
   return (
