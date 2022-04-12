@@ -24,11 +24,10 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import Masonry from '@mui/lab/Masonry';
 import Layout from '../components/layout';
 import Dice from '../components/dice';
-import { REFERENCE } from '../utils/constants';
+import { REFERENCE, SCROLL_BEHAVIOR } from '../utils/constants';
 
 /* Table of Contents */
-function TableOfContents(props) {
-  const { referenceData } = props;
+function TableOfContents({ referenceData, setScrollLocation }) {
   return (
     <>
       <Box>
@@ -45,7 +44,13 @@ function TableOfContents(props) {
               alignItems: 'stretch',
             }}
           >
-            {referenceData.map((item) => <TableOfContentsItem key={item.category} item={item} />)}
+            {referenceData.map((item) => (
+              <TableOfContentsItem
+                setScrollLocation={setScrollLocation}
+                key={item.category}
+                item={item}
+              />
+            ))}
           </List>
         </Paper>
       </Box>
@@ -58,8 +63,7 @@ function TableOfContents(props) {
   );
 }
 
-function TableOfContentsItem(props) {
-  const { item } = props;
+function TableOfContentsItem({ item, setScrollLocation }) {
   const plural = item.posts.length > 1 ? 's' : '';
   return (
     <ListItem
@@ -78,27 +82,49 @@ function TableOfContentsItem(props) {
       >
         <CardHeader title={item.category} subheader={`${item.posts.length} Article${plural}`} />
         <Divider />
-        <TableOfContentsItemList articles={item.posts} />
+        <TableOfContentsItemList
+          setScrollLocation={setScrollLocation}
+          articles={item.posts}
+        />
       </Card>
     </ListItem>
   );
 }
 
-function TableOfContentsItemList(props) {
-  const { articles } = props;
+function TableOfContentsItemList({ articles, setScrollLocation }) {
   return (
     <List>
       {articles.map((article) => (
-        <TableOfContentsItemListLink key={article.post.frontmatter.title} article={article} />
+        <TableOfContentsItemListLink
+          setScrollLocation={setScrollLocation}
+          key={article.post.frontmatter.title}
+          article={article}
+        />
       ))}
     </List>
   );
 }
 
-function TableOfContentsItemListLink({ article: { post } }) {
+function TableOfContentsItemListLink({ article: { post }, setScrollLocation }) {
+  const [anchorTarget, setAnchorTarget] = React.useState(null);
+
+  React.useEffect(() => {
+    setAnchorTarget(
+      document.getElementById(
+        encodeURI(post.frontmatter.title).toLowerCase(),
+      ),
+    );
+  });
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    anchorTarget.scrollIntoView(SCROLL_BEHAVIOR);
+    setScrollLocation(anchorTarget.id);
+  };
+
   return (
     <ListItem key={post.id}>
-      <Link to={`#${encodeURI(post.frontmatter.title).toLowerCase()}`}>
+      <Link onClick={handleClick} to={`#${encodeURI(post.frontmatter.title).toLowerCase()}`}>
         {post.frontmatter.title}
       </Link>
     </ListItem>
@@ -111,11 +137,7 @@ function ReferenceArticles(props) {
   const { referenceData } = props;
   return (
     <Box>
-      <Paper
-        sx={{
-          p: 2,
-        }}
-      >
+      <Paper sx={{ p: 2 }}>
         <List disablePadding>
           {referenceData.map((item) => (
             <ReferenceArticlesCategoryBlock key={item.category} categoryBlock={item} />
@@ -273,6 +295,7 @@ function ReferenceArticlesCategoryBlockItemMarkdown(props) {
 function ReferencePage(props) {
   const { data } = props;
   const posts = data.allMdx.nodes;
+  const [scrollLocation, setScrollLocation] = React.useState(0);
 
   const referenceData = [];
   if (posts.length) {
@@ -328,7 +351,10 @@ function ReferencePage(props) {
       >
         <ArrowUpwardIcon />
       </Fab>
-      <TableOfContents referenceData={referenceData} />
+      <TableOfContents
+        setScrollLocation={setScrollLocation}
+        referenceData={referenceData}
+      />
       <ReferenceArticles referenceData={referenceData} />
     </Layout>
   );
