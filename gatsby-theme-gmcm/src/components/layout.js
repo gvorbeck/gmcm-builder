@@ -4,6 +4,7 @@ import {
 } from '@mui/material';
 import { Link } from 'gatsby-theme-material-ui';
 import { Helmet } from 'react-helmet';
+import { SnackbarProvider } from 'notistack';
 import {
   SITE_NAME, SITE_SHORT_NAME, FOOTER_COPY,
 } from '../utils/constants';
@@ -32,6 +33,9 @@ function Layout({
           // Table header row styles
           '& thead tr': {
             backgroundColor: 'primary.main',
+          },
+          '& .SnackbarContainer-root': {
+            gap: 2,
           },
         }}
       >
@@ -92,18 +96,20 @@ function Layout({
             position: 'relative',
           }}
         >
-          {title && title !== 'Home' && (
-            <Typography
-              variant="h2"
-              sx={{
-                fontWeight: 500,
-                textTransform: 'capitalize',
-              }}
-            >
-              {title}
-            </Typography>
-          )}
-          {children}
+          <SnackbarProvider maxSnack={5}>
+            {title && title !== 'Home' && (
+              <Typography
+                variant="h2"
+                sx={{
+                  fontWeight: 500,
+                  textTransform: 'capitalize',
+                }}
+              >
+                {title}
+              </Typography>
+            )}
+            {children}
+          </SnackbarProvider>
         </Container>
         <Container
           component="footer"

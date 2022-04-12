@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
-import { SnackbarProvider } from 'notistack';
 import theme from '../utils/theme';
 
 export default function TopLayout({ children }) {
@@ -25,9 +24,7 @@ export default function TopLayout({ children }) {
       <ThemeProvider theme={theme}>
         {/* CSS Reset */}
         <CssBaseline />
-        <SnackbarProvider maxSnack={5}>
-          {children}
-        </SnackbarProvider>
+        {children}
       </ThemeProvider>
     </>
   );
