@@ -3,12 +3,12 @@ import {
   Link,
 } from 'gatsby-theme-material-ui';
 
-function MonsterLink({ children, m }) {
+function LinkMeat({ query, category, children }) {
   return (
     <Link
-      to="/search/?category=monsters"
+      to={`/search/?category=${category}`}
       state={{
-        query: m,
+        query,
       }}
     >
       {children}
@@ -16,16 +16,19 @@ function MonsterLink({ children, m }) {
   );
 }
 
-function SpellLink({ children, spell }) {
+function MonsterLink({ children, m }) {
   return (
-    <Link
-      to="/search/?category=spells"
-      state={{
-        query: spell,
-      }}
-    >
+    <LinkMeat query={m} category="monsters">
       {children}
-    </Link>
+    </LinkMeat>
+  );
+}
+
+function SpellLink({ children, s }) {
+  return (
+    <LinkMeat query={s} category="spells">
+      {children}
+    </LinkMeat>
   );
 }
 
