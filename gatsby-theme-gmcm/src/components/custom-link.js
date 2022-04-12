@@ -3,12 +3,12 @@ import {
   Link,
 } from 'gatsby-theme-material-ui';
 
-function MonsterLink({ children, monster }) {
+function MonsterLink({ children, m }) {
   return (
     <Link
       to="/search/?category=monsters"
       state={{
-        query: monster,
+        query: m,
       }}
     >
       {children}
