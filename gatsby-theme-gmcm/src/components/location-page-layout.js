@@ -50,7 +50,9 @@ import {
   Unknown,
 } from '../images/icons';
 
-const markdownComponentsList = { Link, MonsterLink, SpellLink, Dice };
+const markdownComponentsList = {
+  Link, MonsterLink, SpellLink, Dice,
+};
 
 function LocationPageLayout({ data, location }) {
   const [scrollLocation, setScrollLocation] = useState(0);

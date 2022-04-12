@@ -27,7 +27,7 @@ import Dice from '../components/dice';
 import { REFERENCE, SCROLL_BEHAVIOR } from '../utils/constants';
 
 /* Table of Contents */
-function TableOfContents({ referenceData, setScrollLocation }) {
+function TableOfContents({ referenceData }) {
   return (
     <>
       <Box>
@@ -46,7 +46,6 @@ function TableOfContents({ referenceData, setScrollLocation }) {
           >
             {referenceData.map((item) => (
               <TableOfContentsItem
-                setScrollLocation={setScrollLocation}
                 key={item.category}
                 item={item}
               />
@@ -63,7 +62,7 @@ function TableOfContents({ referenceData, setScrollLocation }) {
   );
 }
 
-function TableOfContentsItem({ item, setScrollLocation }) {
+function TableOfContentsItem({ item }) {
   const plural = item.posts.length > 1 ? 's' : '';
   return (
     <ListItem
@@ -83,7 +82,6 @@ function TableOfContentsItem({ item, setScrollLocation }) {
         <CardHeader title={item.category} subheader={`${item.posts.length} Article${plural}`} />
         <Divider />
         <TableOfContentsItemList
-          setScrollLocation={setScrollLocation}
           articles={item.posts}
         />
       </Card>
@@ -91,12 +89,11 @@ function TableOfContentsItem({ item, setScrollLocation }) {
   );
 }
 
-function TableOfContentsItemList({ articles, setScrollLocation }) {
+function TableOfContentsItemList({ articles }) {
   return (
     <List>
       {articles.map((article) => (
         <TableOfContentsItemListLink
-          setScrollLocation={setScrollLocation}
           key={article.post.frontmatter.title}
           article={article}
         />
@@ -105,7 +102,7 @@ function TableOfContentsItemList({ articles, setScrollLocation }) {
   );
 }
 
-function TableOfContentsItemListLink({ article: { post }, setScrollLocation }) {
+function TableOfContentsItemListLink({ article: { post } }) {
   const [anchorTarget, setAnchorTarget] = React.useState(null);
 
   React.useEffect(() => {
@@ -119,7 +116,6 @@ function TableOfContentsItemListLink({ article: { post }, setScrollLocation }) {
   const handleClick = (event) => {
     event.preventDefault();
     anchorTarget.scrollIntoView(SCROLL_BEHAVIOR);
-    setScrollLocation(anchorTarget.id);
   };
 
   return (
@@ -295,7 +291,6 @@ function ReferenceArticlesCategoryBlockItemMarkdown(props) {
 function ReferencePage(props) {
   const { data } = props;
   const posts = data.allMdx.nodes;
-  const [scrollLocation, setScrollLocation] = React.useState(0);
 
   const referenceData = [];
   if (posts.length) {
@@ -352,7 +347,6 @@ function ReferencePage(props) {
         <ArrowUpwardIcon />
       </Fab>
       <TableOfContents
-        setScrollLocation={setScrollLocation}
         referenceData={referenceData}
       />
       <ReferenceArticles referenceData={referenceData} />
