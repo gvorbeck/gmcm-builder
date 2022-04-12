@@ -15,7 +15,6 @@ import {
   Stack,
   SvgIcon,
   Tooltip,
-//   Typography,
 } from '@mui/material';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import {
@@ -34,10 +33,10 @@ import {
 } from '@mui/icons-material/';
 import Layout from './layout';
 import { MonsterLink } from './custom-link';
+import Dice from './dice';
 import {
   MAP, GENERAL, UP, DOWN,
   CARD_HEADER_STYLES, SCROLL_BEHAVIOR, UNKNOWN_FLAG, FLAG_TOOLTIPS,
-//   LOCATION_NAVIGATION, UNKNOWN_ROOM_FLAG, GENERAL_INFORMATION, SCROLL_MARGIN_TOP,
 } from '../utils/constants';
 import {
   Read,
@@ -50,6 +49,8 @@ import {
   Boss,
   Unknown,
 } from '../images/icons';
+
+const markdownComponentsList = { Link, MonsterLink, Dice };
 
 function LocationPageLayout({ data, location }) {
   const [scrollLocation, setScrollLocation] = useState(0);
@@ -64,7 +65,7 @@ function LocationPageLayout({ data, location }) {
             typography: 'Body1',
             color: 'primary.light',
           }}
-          to={parentAdventureSlug}
+          to={`/${parentAdventureSlug}`}
         >
           <ArrowBack
             fontSize="inherit"
@@ -485,7 +486,7 @@ function LocationAreaListItem({ content, index }) {
           {content.content && (
             <MarkdownView
               markdown={content.content}
-              components={{ Link, MonsterLink }}
+              components={markdownComponentsList}
             />
           )}
         </CardContent>
