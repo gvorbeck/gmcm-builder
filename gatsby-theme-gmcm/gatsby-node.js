@@ -72,7 +72,11 @@ exports.createPages = async ({ graphql, actions, reporter }, options) => {
       actions.createPage({
         path: `${basePath}${node.slug}`,
         component: require.resolve(`./src/components/${template}-page-layout.js`),
-        context: { id: node.id },
+        context: {
+          id: node.id,
+          locations: template === 'adventure' && `${node.slug}locations/`,
+          npcs: template === 'adventure' && `${node.slug}npcs/`,
+        },
       });
     }
   });
