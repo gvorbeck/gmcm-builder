@@ -111,7 +111,6 @@ function Locations({ content, parentAdventureSlug, parentAdventureTitle }) {
 }
 
 function LocationItem({ content, parentAdventureSlug, parentAdventureTitle }) {
-  console.log(content);
   return (
     <ListItem disablePadding>
       <ListItemButton
