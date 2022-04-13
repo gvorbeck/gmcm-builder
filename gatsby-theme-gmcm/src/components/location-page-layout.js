@@ -388,6 +388,8 @@ function LocationMapArea({
           position: 'absolute',
           display: 'none',
           zIndex: 1,
+          top: '85%',
+          left: '15%',
         }}
       >
         <CardActionArea
