@@ -10,6 +10,90 @@ exports.onPreBootstrap = ({ reporter }, options) => {
   }
 };
 
+exports.createSchemaCustomization = ({ actions: { createTypes } }) => {
+  createTypes(`
+    type MdxFrontmatter @infer {
+      monsters: [Monster]
+      areas: [Area]
+      spells: [Spell]
+      setting: String
+      levels: String
+      playernum: String
+    }
+    type Spell {
+      name: String!
+      source: String
+      castingtime: String
+      classes: [String]
+      components: String
+      description: String
+      duration: String
+      level: String
+      range: String
+      ritual: Boolean
+      school: String
+      attacksave: String
+      damage: String
+    }
+    type Area {
+      id: ID
+      name: String!
+      x: Int
+      y: Int
+      flags: [String]
+      flavor: String
+      callout: String
+      content: String
+    }
+    type Monster {
+      ac: Stat
+      hp: Stat
+      speed: String
+      type: String
+      name: String!
+      abilities: [AbilityList]!
+      skills: [Buff]
+      saves: [Buff]
+      senses: String
+      languages: String
+      source: String
+      description: String
+      lgdyactions: [Definition]
+      reactions: [Definition]
+      actions: [Definition]
+      traits: [Definition]
+      cdnimmunities: String
+      dmgvulnerabilities: String
+      dmgresistances: String
+      dmgimmunities: String
+      challenge: String
+    }
+    type Stat {
+      value: String!
+      notes: String
+    }
+    type AbilityList {
+      str: Int!
+      dex: Int!
+      con: Int!
+      int: Int!
+      wis: Int!
+      cha: Int!
+    }
+    type Buff {
+      name: String!
+      modifier: String!
+    }
+    type Definition {
+      name: String!
+      content: String
+    }
+    type Mdx implements Node @infer {
+      frontmatter: MdxFrontmatter
+    }
+  `);
+};
+
 exports.createPages = async ({ graphql, actions, reporter }, options) => {
   const basePath = options.basePath || '/';
 
