@@ -143,36 +143,10 @@ function LocationNavigation({
       icon: <ArrowDownward />,
     },
   ];
-  return (
-    <ButtonGroup variant="contained">
-      {navData.map((navItem) => (
-        <LocationNavigationButton
-          max={locationMax}
-          content={navItem}
-          key={navItem.name}
-          scrollLocation={scrollLocation}
-          setScrollLocation={setScrollLocation}
-          icon={navItem.icon}
-        />
-      ))}
-    </ButtonGroup>
-  );
-}
 
-function LocationNavigationButton({
-  content,
-  max,
-  scrollLocation,
-  setScrollLocation,
-}) {
-  const [anchorTarget, setAnchorTarget] = useState(null);
-
-  useEffect(() => {
-    setAnchorTarget(document.getElementById(content.anchor));
-  }, [content.anchor]);
-
-  const handleClick = (event) => {
+  const handleClick = (event, anchorTarget, content) => {
     event.preventDefault();
+    console.log(scrollLocation);
     let location = scrollLocation;
     if (content.anchor === 'up' || content.anchor === 'down') {
       if (content.anchor === 'up') {
@@ -193,7 +167,7 @@ function LocationNavigationButton({
         if (scrollLocation === 'general') {
           location = 1;
         }
-        if (scrollLocation < max) {
+        if (scrollLocation < locationMax) {
           location += 1;
         }
       }
@@ -204,11 +178,26 @@ function LocationNavigationButton({
       setScrollLocation(anchorTarget.id);
     }
   };
+  return (
+    <ButtonGroup variant="contained">
+      {navData.map((navItem) => (
+        <LocationNavigationButton content={navItem} key={navItem.name} handleClick={handleClick} />
+      ))}
+    </ButtonGroup>
+  );
+}
+
+function LocationNavigationButton({ content, handleClick }) {
+  const [anchorTarget, setAnchorTarget] = useState(null);
+
+  useEffect(() => {
+    setAnchorTarget(document.getElementById(content.anchor));
+  }, []);
 
   return (
     <Button
       to={`#${content.anchor}`}
-      onClick={handleClick}
+      onClick={(event) => handleClick(event, anchorTarget, content)}
       aria-label="Navigation Button"
       title={content.name}
     >
