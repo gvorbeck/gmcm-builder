@@ -118,7 +118,7 @@ Install these if they are not already.
   ```
 - Install your packages
   ```sh
-  yarn add react react-dom gatsby gatsby-theme-gmcm
+  yarn add react react-dom gatsby @iamgarrett/gatsby-theme-gmcm
   ```
 - Inside `my-gmcm/` create a file called `gatsby-config.js` and add:
   ```js
