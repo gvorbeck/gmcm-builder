@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import {
-  Box, Card, CardContent, CardHeader, Divider, Paper, Typography,
+  Box, Card, CardContent, Paper, Typography,
 } from '@mui/material';
 import Navigation from '../components/navigation';
 import Layout from '../components/layout';
@@ -31,7 +31,7 @@ function IndexPage() {
             </CardContent>
           </Card>
           <Navigation homeNav size="large" />
-          <Card raised>
+          {/* <Card raised>
             <CardHeader
               title="Adventures"
               subheader="Where all the fun is at."
@@ -47,7 +47,7 @@ function IndexPage() {
                 campaigns, or \"adventures\".
               </Typography>
             </CardContent>
-          </Card>
+          </Card> */}
         </Paper>
       </Box>
     </Layout>
