@@ -1,0 +1,3 @@
+[submodule "gatsby-theme-gmcm"]
+	path = gatsby-theme-gmcm
+	url = https://github.com/gvorbeck/gatsby-theme-gmcm.git
