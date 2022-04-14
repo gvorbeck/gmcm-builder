@@ -1,13 +1,20 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = ({ contentPath = 'src/content', basePath = '/' }) => ({
   plugins: [
-    'gatsby-plugin-image', 'gatsby-plugin-react-helmet', 'gatsby-plugin-mdx',
-    'gatsby-plugin-sharp', 'gatsby-transformer-sharp',
+    'gatsby-transformer-sharp', 'gatsby-plugin-sharp', 'gatsby-plugin-image', 'gatsby-plugin-react-helmet', 'gatsby-plugin-mdx',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'content',
         path: contentPath,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        // Served from theme directly.
+        name: 'dummyContent',
+        path: `${__dirname}/src/content`,
       },
     },
     {

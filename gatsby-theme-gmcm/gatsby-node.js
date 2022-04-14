@@ -10,6 +10,17 @@ exports.onPreBootstrap = ({ reporter }, options) => {
   }
 };
 
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      fallback: {
+        crypto: require.resolve('crypto-browserify'),
+        stream: require.resolve('stream-browserify'),
+      },
+    },
+  });
+};
+
 exports.createSchemaCustomization = ({ actions: { createTypes } }) => {
   createTypes(`
     type MdxFrontmatter @infer {
@@ -19,9 +30,16 @@ exports.createSchemaCustomization = ({ actions: { createTypes } }) => {
       setting: String
       levels: String
       playernum: String
+      map: Map
+    }
+    type Map {
+      image: File @fileByRelativePath
+      width: Int
+      height: Int
+      padding: String
     }
     type Spell {
-      name: String!
+      name: String
       source: String
       castingtime: String
       classes: [String]
@@ -37,55 +55,62 @@ exports.createSchemaCustomization = ({ actions: { createTypes } }) => {
     }
     type Area {
       id: ID
-      name: String!
+      name: String
       x: Int
       y: Int
       flags: [String]
       flavor: String
       callout: String
       content: String
+      traps: [Trap]
+    }
+    type Trap {
+      x: Int
+      y: Int
+      w: Int
+      h: Int
     }
     type Monster {
       ac: Stat
       hp: Stat
-      speed: String
+      speed: [String]
       type: String
-      name: String!
-      abilities: [AbilityList]!
+      name: String
+      abilities: AbilityList
       skills: [Buff]
       saves: [Buff]
-      senses: String
-      languages: String
+      senses: [String]
+      languages: [String]
       source: String
       description: String
       lgdyactions: [Definition]
       reactions: [Definition]
       actions: [Definition]
       traits: [Definition]
-      cdnimmunities: String
-      dmgvulnerabilities: String
-      dmgresistances: String
-      dmgimmunities: String
+      cdnimmunities: [String]
+      dmgvulnerabilities: [String]
+      dmgresistances: [String]
+      dmgimmunities: [String]
       challenge: String
     }
     type Stat {
-      value: String!
+      value: String
       notes: String
     }
     type AbilityList {
-      str: Int!
-      dex: Int!
-      con: Int!
-      int: Int!
-      wis: Int!
-      cha: Int!
+      str: Int
+      dex: Int
+      con: Int
+      int: Int
+      wis: Int
+      cha: Int
     }
     type Buff {
-      name: String!
-      modifier: String!
+      name: String
+      modifier: String
     }
     type Definition {
-      name: String!
+      name: String
       content: String
     }
     type Mdx implements Node @infer {
