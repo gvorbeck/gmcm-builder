@@ -23,5 +23,6 @@ module.exports = {
     'no-console': 'off',
     'no-else-return': ['error', { allowElseIf: true }],
     'react/jsx-props-no-spreading': [0],
+    'no-nested-ternary': 'off',
   },
 };
