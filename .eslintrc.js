@@ -24,5 +24,6 @@ module.exports = {
     'no-else-return': ['error', { allowElseIf: true }],
     'react/jsx-props-no-spreading': [0],
     'no-nested-ternary': 'off',
+    'no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
   },
 };
