@@ -1,19 +1,14 @@
-1.2
-- X arena: clicking monster's add icon shouldn't open drawer (makes adding multiple monsters tedious). instead it should add the monster to the list (drawer closed) and give a snackbar notification that the monster was added.
-- X arena: add a hotkey for the drawer. add hint text for the key on the drawer.
-- X arena: use split button (https://mui.com/material-ui/react-button-group/#split-button) to have a button that gives option to clear all combatants or clear just npcs.
-- X arena: give monster add icon a "+" using ::after or something.
-- legal: comply with this (https://www.thearcanelibrary.com/blogs/news/how-to-use-the-open-game-license)
-- X Homepage: 'What's new explaining combat drawer.
-- Arena: button should be a floating button, not in nav.
-- X arena: style the drawer.
-- legal: use Tabs?
-- search: hp & ac extra parentheses. also empty values (see adult blue dragon and aboleth).
-- general: CLEAN BROKEN PAGES DUE TO ARENA.
-
-1.3
-- arena: click monster to see its stats
-- general: theme options to exclude default content pieces.
-- arena: remove strings to constants.
-- constants: overhaul constants file.
+0.1.3
 - search: add SRD spells
+- arena: move strings to constants
+- constants: overhaul constants file.
+- location page: add arena
+- search: create attack buttons within monster stats
+
+Backlog:
+- arena: click monster to see its stats?
+- general: theme options to exclude default content pieces.
+- add in srd magic items
+- style console log combat track items
+- custom console/bash commands to create new files
+- legal: use Tabs?
